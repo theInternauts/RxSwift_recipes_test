@@ -29,11 +29,12 @@ class RecipeListViewModel {
     }
     
     func fetchRecipeViewModels() {
-        recipes = service.fetchRecipesRx()
+        recipes = service.fetchRx()
         recipes?.subscribe(onNext: { value in
             var recipeDetailViewModels = [RecipeDetailViewModel]()
             for index in 0..<value.count {
                 let detail = RecipeDetailViewModel(recipe: value[index])
+                self.readFavoritesStatus(detail)
                 recipeDetailViewModels.append(detail)
             }
             self.recipeDetail.accept(recipeDetailViewModels)
@@ -45,8 +46,25 @@ class RecipeListViewModel {
             })
         },
         onCompleted: {
-            Observable<Any>.empty()
             print("fetch complete")
         }).disposed(by: bag)
+    }
+    
+    func readFavoritesStatus(_ model: RecipeDetailViewModel) -> Void {
+        if let prm = PersistenceManagerLight.shared().getRecipeObjectFromUserDefault(model.id) {
+            model.isFavorite.accept(Bool(prm.isFavorite) ?? false)
+        }
+    }
+    
+    func updateFavoritesStatus(_ model: RecipeDetailViewModel, completion: (()-> Void)? = nil) -> Void {
+        if model.isFavorite.value {
+            PersistenceManagerLight.shared().storeRecipeFavoritableObjectToUserDefault(PersistableRecipeModel(model))
+        } else {
+            PersistenceManagerLight.shared().deleteRecipeObjectFromUserDefault(model.id)
+        }
+        guard completion != nil else {
+            return
+        }
+        completion!()
     }
 }

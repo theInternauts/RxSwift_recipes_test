@@ -28,7 +28,7 @@ class RxHTTPService: RecipeServiceProtocol {
         return privateManagerForConfiguration
     }
     
-    internal func fetchRecipesRx<T: Codable>() -> Observable<T> {
+    internal func fetchRx<T: Codable>() -> Observable<T> {
         return Observable<T>.create { [weak self] observer -> Disposable in
             guard let self = self else { return Disposables.create {} }
             

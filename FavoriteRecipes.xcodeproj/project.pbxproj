@@ -30,6 +30,8 @@
 		6DB13CCF26F8D4910073F17B /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CCE26F8D4910073F17B /* RecipeCollectionViewCell.swift */; };
 		6DB13CD326F8E2290073F17B /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CD226F8E2290073F17B /* UIImage+Ext.swift */; };
 		6DB13CD526F907660073F17B /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CD426F907660073F17B /* UILabel+Ext.swift */; };
+		6DB13CD726F920130073F17B /* PersistenceManagerLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CD626F920130073F17B /* PersistenceManagerLight.swift */; };
+		6DB13CD926F9232B0073F17B /* PersistableRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CD826F9232B0073F17B /* PersistableRecipeModel.swift */; };
 		73DC8D0089F91295658A2D82 /* Pods_FavoriteRecipes_FavoriteRecipesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002E23A003A51A20B3A13396 /* Pods_FavoriteRecipes_FavoriteRecipesUITests.framework */; };
 		7D7D566502AD1B30448FC109 /* Pods_FavoriteRecipesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2570713E89F935CAE446D50 /* Pods_FavoriteRecipesTests.framework */; };
 		ECFA9F97F5136B98AB242D00 /* Pods_FavoriteRecipes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6962ABF9D28AE7852D2579 /* Pods_FavoriteRecipes.framework */; };
@@ -86,6 +88,8 @@
 		6DB13CCE26F8D4910073F17B /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		6DB13CD226F8E2290073F17B /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		6DB13CD426F907660073F17B /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		6DB13CD626F920130073F17B /* PersistenceManagerLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManagerLight.swift; sourceTree = "<group>"; };
+		6DB13CD826F9232B0073F17B /* PersistableRecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableRecipeModel.swift; sourceTree = "<group>"; };
 		7060B5A48FE26E9AAE2AB0EE /* Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig"; path = "Target Support Files/Pods-FavoriteRecipes-FavoriteRecipesUITests/Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		81A402423B405F7409351286 /* Pods-FavoriteRecipes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FavoriteRecipes.release.xcconfig"; path = "Target Support Files/Pods-FavoriteRecipes/Pods-FavoriteRecipes.release.xcconfig"; sourceTree = "<group>"; };
 		A2570713E89F935CAE446D50 /* Pods_FavoriteRecipesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FavoriteRecipesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,6 +207,7 @@
 			children = (
 				6DB13CC426F859BA0073F17B /* BigData.swift */,
 				6DB13CC626F859DF0073F17B /* Recipe.swift */,
+				6DB13CD826F9232B0073F17B /* PersistableRecipeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				6DB13CC226F854CE0073F17B /* RxHTTPService.swift */,
+				6DB13CD626F920130073F17B /* PersistenceManagerLight.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -502,10 +508,12 @@
 				6DB13CC926F86DF10073F17B /* RecipeDetailViewModel.swift in Sources */,
 				6DB13CB326F843140073F17B /* RecipeListingVC.swift in Sources */,
 				6DB13CD526F907660073F17B /* UILabel+Ext.swift in Sources */,
+				6DB13CD726F920130073F17B /* PersistenceManagerLight.swift in Sources */,
 				6DB13CCD26F8CB890073F17B /* RecipeDetailVC.swift in Sources */,
 				6DB13CBB26F847920073F17B /* UIView+Ext.swift in Sources */,
 				6DB13CB526F844300073F17B /* RecipeFavoritesVC.swift in Sources */,
 				6DB13C8326F83DF70073F17B /* ViewController.swift in Sources */,
+				6DB13CD926F9232B0073F17B /* PersistableRecipeModel.swift in Sources */,
 				6DB13CB926F8465F0073F17B /* StartScreenVC.swift in Sources */,
 				6DB13C7F26F83DF70073F17B /* AppDelegate.swift in Sources */,
 				6DB13CCB26F8706A0073F17B /* RecipeListViewModel.swift in Sources */,

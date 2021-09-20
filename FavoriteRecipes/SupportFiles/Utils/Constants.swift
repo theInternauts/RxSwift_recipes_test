@@ -17,6 +17,8 @@ enum APIErrors: Error {
     case validationFailed(_ error: Error?)
     case invalidRequestUrl(_ error: Error?)
     case deallocatedService(_ error: Error?)
+    case persistenceSaveError(_ error: Error?)
+    case persistenceRetrievalError(_ error: Error?)
     
     var extendedMessage: String {
         get {
@@ -28,6 +30,8 @@ enum APIErrors: Error {
             case .validationFailed(let error): return "\(String(describing: error?.localizedDescription))"
             case .invalidRequestUrl(let error): return "\(String(describing: error?.localizedDescription))"
             case .deallocatedService(let error): return "RxHTTPService was deallocated: \(String(describing: error?.localizedDescription))"
+            case .persistenceSaveError(let error): return "Unable to save to the persistence layer: \(String(describing: error?.localizedDescription))"
+            case .persistenceRetrievalError(let error): return "Unable to read from the persistence layer: \(String(describing: error?.localizedDescription))"
             }
         }
     }

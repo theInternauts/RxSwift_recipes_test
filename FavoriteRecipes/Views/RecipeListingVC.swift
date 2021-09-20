@@ -23,6 +23,7 @@ class RecipeListingVC: UIViewController {
     
     private var collectionView: UICollectionView?
     
+    
     // MARK: - Initialization
     init(tabBarItemLabelText: String,
          tabBarItemIconActive: UIImage,
@@ -106,7 +107,6 @@ private extension RecipeListingVC {
             fatalError("self.viewModel: RecipeListViewModel cannot be bound to becasue self.collectionView: UICollectionView? is not present")
         }
         
-        //Here we subscribe the subject in viewModel to get the value here
         viewModel.recipeDetailObserver
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (value) in
@@ -118,30 +118,35 @@ private extension RecipeListingVC {
             self.errorAlert()
         }).disposed(by: bag)
         
-        //This binds the table datasource with tableview and also connects the cell to it.
-        filteredDataList.bind(to: collectionView.rx.items(cellIdentifier: RecipeCollectionViewCell.reuseIdentifier, cellType: RecipeCollectionViewCell.self)) { row, model, cell in
-            cell.configure(model)
-        }.disposed(by: bag)
+        filteredDataList
+            .bind(to: collectionView.rx
+                    .items(cellIdentifier: RecipeCollectionViewCell.reuseIdentifier,
+                           cellType: RecipeCollectionViewCell.self))
+            { row, model, cell in
+                cell.configure(model)
+            }.disposed(by: bag)
         
-        //Replacement to didSelectRowAt() of tableview delegate functions
         collectionView.rx.itemSelected
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (indexPath) in
-            guard let self = self else { return }
-            
-            let model = self.filteredDataList.value[indexPath.row]
-            self.collectionView?.deselectItem(at: indexPath, animated: true)
-            self.recipeDetailVC?.viewModel.accept(model)
-            self.recipeDetailVC?.viewModel.value.isFavoriteObservable
-                .observe(on: MainScheduler.instance)
-                .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 
-                self.collectionView?.reloadData()
-            }).disposed(by: self.bag)
-            
-            self.navigationController?.pushViewController(self.recipeDetailVC ?? RecipeDetailVC(), animated: true)
-        }).disposed(by: bag)
+                let model = self.filteredDataList.value[indexPath.row]
+                self.collectionView?.deselectItem(at: indexPath, animated: true)
+                self.recipeDetailVC?.viewModel.accept(model)
+                self.recipeDetailVC?.viewModel.value.isFavoriteObservable
+                    .observe(on: MainScheduler.instance)
+                    .subscribe(onNext: { [weak self] _ in
+                        guard let self = self else { return }
+                        
+                        self.viewModel.updateFavoritesStatus(model) {
+                            print("DONZO")
+                        }
+                        self.collectionView?.reloadData()
+                    }).disposed(by: self.bag)
+                
+                self.navigationController?.pushViewController(self.recipeDetailVC ?? RecipeDetailVC(), animated: true)
+            }).disposed(by: bag)
     }
     
     func configureNavigation(isHidden: Bool, textColor: UIColor = Colors.gray) -> Void {

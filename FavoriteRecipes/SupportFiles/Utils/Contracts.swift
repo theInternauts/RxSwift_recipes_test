@@ -16,6 +16,14 @@ protocol UITabBarEnabled: UIViewController {
 }
 
 
+protocol PersistableRecipe {
+    var id: String { get set }
+    var title: String { get set }
+    var imageUrl: String { get set }
+    var isFavorite: String { get set }
+}
+
+
 protocol RecipeServiceProtocol {
-    func fetchRecipesRx<T: Codable>() -> Observable<T>
+    func fetchRx<T: Codable>() -> Observable<T>
 }
