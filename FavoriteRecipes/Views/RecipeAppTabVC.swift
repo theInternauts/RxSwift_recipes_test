@@ -33,6 +33,7 @@ private extension RecipeAppTabVC {
         if #available(iOS 13.0, *) {
             overrideUserInterfaceStyle = .light
         }
+        delegate = self
         view.backgroundColor = .white
         tabBar.barTintColor = .white
         tabBar.tintColor = Colors.gold
@@ -47,5 +48,19 @@ private extension RecipeAppTabVC {
                                                   selectedImage: recipeFavorites.tabBarItemIconActive)
         
         setViewControllers([recipeListing, recipeFavorites], animated: true)
+        selectedViewController = recipeListing
+        setNavigationBarTitle(fromController: selectedViewController!)
+    }
+    
+    func setNavigationBarTitle(fromController viewController: UIViewController) -> Void {
+        if let childTitle = viewController.title {
+            title = childTitle
+        }
+    }
+}
+
+extension RecipeAppTabVC: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        setNavigationBarTitle(fromController: viewController)
     }
 }
