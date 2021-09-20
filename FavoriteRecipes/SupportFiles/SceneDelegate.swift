@@ -18,10 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let listing = RecipeListingVC(tabBarItemLabelText: LocalizedText.recipes.rawValue,
+        let listing = RecipeListingVC(tabBarItemLabelText: ApplicationText.recipes.rawValue,
                                       tabBarItemIconActive: UIImage(systemName: IconLabels.recipesActive.rawValue)!,
                                       tabBarItemIconInactive: UIImage(systemName: IconLabels.recipesInactive.rawValue)!)
-        let favorites = RecipeFavoritesVC(tabBarItemLabelText: LocalizedText.favorites.rawValue,
+        let favorites = RecipeFavoritesVC(tabBarItemLabelText: ApplicationText.favorites.rawValue,
                                            tabBarItemIconActive: UIImage(systemName: IconLabels.favoritesActive.rawValue)!,
                                            tabBarItemIconInactive: UIImage(systemName: IconLabels.favoritesInactive.rawValue)!)
         

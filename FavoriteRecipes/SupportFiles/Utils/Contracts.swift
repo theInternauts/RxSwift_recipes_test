@@ -14,3 +14,8 @@ protocol UITabBarEnabled: UIViewController {
     var tabBarItemIconActive: UIImage { get }
     var tabBarItemIconInactive: UIImage { get }
 }
+
+
+protocol RecipeServiceProtocol {
+    func fetchRecipesRx<T: Codable>() -> Observable<T>
+}

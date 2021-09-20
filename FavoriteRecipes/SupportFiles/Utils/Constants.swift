@@ -8,11 +8,38 @@
 import UIKit
 
 
-enum LocalizedText: String {
+// MARK: - Standardized Error Messages
+enum APIErrors: Error {
+    case fetchError(_ error: Error?)
+    case responseDataNotFound(_ error: Error?)
+    case unprocessableData(_ error: Error?)
+    case queryTimeout(_ error: Error?)
+    case validationFailed(_ error: Error?)
+    case invalidRequestUrl(_ error: Error?)
+    case deallocatedService(_ error: Error?)
+    
+    var extendedMessage: String {
+        get {
+            switch self {
+            case .fetchError(let error): return "Unknown fetch error: \(String(describing: error?.localizedDescription))"
+            case .responseDataNotFound(let error): return "no data returned from fetch request: \(String(describing: error?.localizedDescription))"
+            case .unprocessableData(let error): return "Unable to decode response data: \(String(describing: error?.localizedDescription))"
+            case .queryTimeout(let error): return "\(String(describing: error?.localizedDescription))"
+            case .validationFailed(let error): return "\(String(describing: error?.localizedDescription))"
+            case .invalidRequestUrl(let error): return "\(String(describing: error?.localizedDescription))"
+            case .deallocatedService(let error): return "RxHTTPService was deallocated: \(String(describing: error?.localizedDescription))"
+            }
+        }
+    }
+}
+
+
+enum ApplicationText: String {
     case recipes = "レシピ"
     case favorites = "お気に入り"
     case start = "スタット"
 }
+
 
 enum IconLabels: String {
     case recipesInactive = "house"
@@ -21,15 +48,18 @@ enum IconLabels: String {
     case favoritesActive = "heart.fill"
 }
 
+
 enum ImageSet {
     static let placeholderImage = UIImage(systemName: "building.2.crop.circle.fill")!
     static let favoritesTRUE = UIImage(systemName: "heart.fill")!
     static let favoritesFALSE = UIImage(systemName: "heart")!
 }
 
+
 enum DataSourcesUrls {
     static let recipes = "https://s3-ap-northeast-1.amazonaws.com/data.kurashiru.com/videos_sample.json"
 }
+
 
 enum Colors {
     static let gold = UIColor(red: 212/255, green: 180/255, blue: 94/255, alpha: 1)

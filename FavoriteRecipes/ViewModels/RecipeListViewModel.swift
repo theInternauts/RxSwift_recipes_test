@@ -1,0 +1,52 @@
+//
+//  RecipeListViewModel.swift
+//  FavoriteRecipes
+//
+//  Created by Christopher Wallace on 9/20/21.
+//
+
+import UIKit
+import RxSwift
+import RxCocoa
+
+
+class RecipeListViewModel {
+    var title = ApplicationText.recipes.rawValue
+    
+    var recipes: Observable<[Recipe]>?
+    var recipeDetailObserver: Observable<[RecipeDetailViewModel]> {
+        return recipeDetail.asObservable()
+    }
+    
+    private let recipeDetail = BehaviorRelay<[RecipeDetailViewModel]>(value: [])
+    private var service: RecipeServiceProtocol!
+    private let bag = DisposeBag()
+    
+    
+    // MARK: - Initialization
+    init(service: RecipeServiceProtocol = RxHTTPService.shared()) {
+        self.service = service
+    }
+    
+    func fetchRecipeViewModels() {
+        recipes = service.fetchRecipesRx()
+        recipes?.subscribe(onNext: { value in
+            var recipeDetailViewModels = [RecipeDetailViewModel]()
+            for index in 0..<value.count {
+                let detail = RecipeDetailViewModel(recipe: value[index])
+                recipeDetailViewModels.append(detail)
+            }
+            self.recipeDetail.accept(recipeDetailViewModels)
+        },
+        onError: { error in
+            _ = self.recipeDetail.catch({ error in
+                print(APIErrors.fetchError(error).extendedMessage)
+                return Observable<[RecipeDetailViewModel]>.empty()
+            })
+        },
+        onCompleted: {
+            Observable<Any>.empty()
+            print("fetch complete")
+        }).disposed(by: bag)
+    }
+}

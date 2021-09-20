@@ -52,8 +52,8 @@ private extension RecipeListingVC {
         configureNavigation(isHidden: false, textColor: Colors.gray)
         view.backgroundColor = .systemBackground
         navigationItem.backButtonDisplayMode = .minimal
-        title = LocalizedText.recipes.rawValue
-        navigationItem.title = LocalizedText.recipes.rawValue
+        title = ApplicationText.recipes.rawValue
+        navigationItem.title = ApplicationText.recipes.rawValue
     }
     
     func configureNavigation(isHidden: Bool, textColor: UIColor = Colors.gray) -> Void {

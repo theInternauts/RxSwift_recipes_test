@@ -52,8 +52,8 @@ private extension RecipeFavoritesVC {
         configureNavigation(isHidden: false, textColor: Colors.gray)
         view.backgroundColor = .systemBackground
         navigationItem.backButtonDisplayMode = .minimal
-        title = LocalizedText.favorites.rawValue
-        navigationItem.title = LocalizedText.favorites.rawValue
+        title = ApplicationText.favorites.rawValue
+        navigationItem.title = ApplicationText.favorites.rawValue
     }
     
     func configureNavigation(isHidden: Bool, textColor: UIColor = Colors.gray) -> Void {

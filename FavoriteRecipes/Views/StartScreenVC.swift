@@ -13,7 +13,7 @@ class StartScreenVC: UIViewController {
     
     private let button: UIButton = {
        let btn = UIButton()
-        btn.setTitle(LocalizedText.start.rawValue, for: .normal)
+        btn.setTitle(ApplicationText.start.rawValue, for: .normal)
         btn.setTitleColor(.black, for: .normal)
         btn.backgroundColor = .white
         btn.addTarget(self, action: #selector(navigateToNewView), for: .touchUpInside)
@@ -59,7 +59,7 @@ private extension StartScreenVC {
         navigationItem.backButtonDisplayMode = .minimal
         view.backgroundColor = .systemPurple
         view.addSubview(button)
-        title = LocalizedText.start.rawValue
+        title = ApplicationText.start.rawValue
     }
     
     func configureNavigation(isHidden: Bool, textColor: UIColor = Colors.gray) -> Void {
