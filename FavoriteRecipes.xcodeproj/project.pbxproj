@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,13 @@
 		6DB13C8B26F83DFC0073F17B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DB13C8926F83DFC0073F17B /* LaunchScreen.storyboard */; };
 		6DB13C9626F83DFD0073F17B /* FavoriteRecipesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13C9526F83DFD0073F17B /* FavoriteRecipesTests.swift */; };
 		6DB13CA126F83DFD0073F17B /* FavoriteRecipesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CA026F83DFD0073F17B /* FavoriteRecipesUITests.swift */; };
+		6DB13CAF26F840F20073F17B /* RecipeAppTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CAE26F840F20073F17B /* RecipeAppTabVC.swift */; };
+		6DB13CB126F842140073F17B /* Contracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CB026F842140073F17B /* Contracts.swift */; };
+		6DB13CB326F843140073F17B /* RecipeListingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CB226F843140073F17B /* RecipeListingVC.swift */; };
+		6DB13CB526F844300073F17B /* RecipeFavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CB426F844300073F17B /* RecipeFavoritesVC.swift */; };
+		6DB13CB726F845FB0073F17B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CB626F845FB0073F17B /* Constants.swift */; };
+		6DB13CB926F8465F0073F17B /* StartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CB826F8465F0073F17B /* StartScreenVC.swift */; };
+		6DB13CBB26F847920073F17B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CBA26F847920073F17B /* UIView+Ext.swift */; };
 		73DC8D0089F91295658A2D82 /* Pods_FavoriteRecipes_FavoriteRecipesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002E23A003A51A20B3A13396 /* Pods_FavoriteRecipes_FavoriteRecipesUITests.framework */; };
 		7D7D566502AD1B30448FC109 /* Pods_FavoriteRecipesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2570713E89F935CAE446D50 /* Pods_FavoriteRecipesTests.framework */; };
 		ECFA9F97F5136B98AB242D00 /* Pods_FavoriteRecipes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6962ABF9D28AE7852D2579 /* Pods_FavoriteRecipes.framework */; };
@@ -54,6 +61,13 @@
 		6DB13C9C26F83DFD0073F17B /* FavoriteRecipesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FavoriteRecipesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DB13CA026F83DFD0073F17B /* FavoriteRecipesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesUITests.swift; sourceTree = "<group>"; };
 		6DB13CA226F83DFD0073F17B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6DB13CAE26F840F20073F17B /* RecipeAppTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAppTabVC.swift; sourceTree = "<group>"; };
+		6DB13CB026F842140073F17B /* Contracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contracts.swift; sourceTree = "<group>"; };
+		6DB13CB226F843140073F17B /* RecipeListingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListingVC.swift; sourceTree = "<group>"; };
+		6DB13CB426F844300073F17B /* RecipeFavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFavoritesVC.swift; sourceTree = "<group>"; };
+		6DB13CB626F845FB0073F17B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6DB13CB826F8465F0073F17B /* StartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVC.swift; sourceTree = "<group>"; };
+		6DB13CBA26F847920073F17B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		7060B5A48FE26E9AAE2AB0EE /* Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig"; path = "Target Support Files/Pods-FavoriteRecipes-FavoriteRecipesUITests/Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		81A402423B405F7409351286 /* Pods-FavoriteRecipes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FavoriteRecipes.release.xcconfig"; path = "Target Support Files/Pods-FavoriteRecipes/Pods-FavoriteRecipes.release.xcconfig"; sourceTree = "<group>"; };
 		A2570713E89F935CAE446D50 /* Pods_FavoriteRecipesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FavoriteRecipesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,8 +128,15 @@
 		6DB13C7D26F83DF70073F17B /* FavoriteRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				6DB13CB626F845FB0073F17B /* Constants.swift */,
 				6DB13C7E26F83DF70073F17B /* AppDelegate.swift */,
 				6DB13C8026F83DF70073F17B /* SceneDelegate.swift */,
+				6DB13CBA26F847920073F17B /* UIView+Ext.swift */,
+				6DB13CB826F8465F0073F17B /* StartScreenVC.swift */,
+				6DB13CB426F844300073F17B /* RecipeFavoritesVC.swift */,
+				6DB13CAE26F840F20073F17B /* RecipeAppTabVC.swift */,
+				6DB13CB026F842140073F17B /* Contracts.swift */,
+				6DB13CB226F843140073F17B /* RecipeListingVC.swift */,
 				6DB13C8226F83DF70073F17B /* ViewController.swift */,
 				6DB13C8726F83DFC0073F17B /* Assets.xcassets */,
 				6DB13C8926F83DFC0073F17B /* LaunchScreen.storyboard */,
@@ -162,7 +183,6 @@
 				5E0F53DCDD90705983D1A4F5 /* Pods-FavoriteRecipesTests.debug.xcconfig */,
 				E6120114B689E44F2E3D3C7B /* Pods-FavoriteRecipesTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -403,9 +423,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DB13CAF26F840F20073F17B /* RecipeAppTabVC.swift in Sources */,
+				6DB13CB326F843140073F17B /* RecipeListingVC.swift in Sources */,
+				6DB13CBB26F847920073F17B /* UIView+Ext.swift in Sources */,
+				6DB13CB526F844300073F17B /* RecipeFavoritesVC.swift in Sources */,
 				6DB13C8326F83DF70073F17B /* ViewController.swift in Sources */,
+				6DB13CB926F8465F0073F17B /* StartScreenVC.swift in Sources */,
 				6DB13C7F26F83DF70073F17B /* AppDelegate.swift in Sources */,
+				6DB13CB126F842140073F17B /* Contracts.swift in Sources */,
 				6DB13C8126F83DF70073F17B /* SceneDelegate.swift in Sources */,
+				6DB13CB726F845FB0073F17B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
