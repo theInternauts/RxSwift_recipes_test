@@ -128,18 +128,11 @@
 		6DB13C7D26F83DF70073F17B /* FavoriteRecipes */ = {
 			isa = PBXGroup;
 			children = (
-				6DB13CB626F845FB0073F17B /* Constants.swift */,
-				6DB13C7E26F83DF70073F17B /* AppDelegate.swift */,
-				6DB13C8026F83DF70073F17B /* SceneDelegate.swift */,
-				6DB13CBA26F847920073F17B /* UIView+Ext.swift */,
-				6DB13CB826F8465F0073F17B /* StartScreenVC.swift */,
-				6DB13CB426F844300073F17B /* RecipeFavoritesVC.swift */,
-				6DB13CAE26F840F20073F17B /* RecipeAppTabVC.swift */,
-				6DB13CB026F842140073F17B /* Contracts.swift */,
-				6DB13CB226F843140073F17B /* RecipeListingVC.swift */,
-				6DB13C8226F83DF70073F17B /* ViewController.swift */,
+				6DB13CC026F8508E0073F17B /* ViewModels */,
+				6DB13CBF26F850780073F17B /* Views */,
+				6DB13CBE26F850700073F17B /* Models */,
 				6DB13C8726F83DFC0073F17B /* Assets.xcassets */,
-				6DB13C8926F83DFC0073F17B /* LaunchScreen.storyboard */,
+				6DB13CBD26F84C2A0073F17B /* SupportFiles */,
 				6DB13C8C26F83DFC0073F17B /* Info.plist */,
 			);
 			path = FavoriteRecipes;
@@ -161,6 +154,61 @@
 				6DB13CA226F83DFD0073F17B /* Info.plist */,
 			);
 			path = FavoriteRecipesUITests;
+			sourceTree = "<group>";
+		};
+		6DB13CBC26F84C0B0073F17B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6DB13CB026F842140073F17B /* Contracts.swift */,
+				6DB13CB626F845FB0073F17B /* Constants.swift */,
+				6DB13CBA26F847920073F17B /* UIView+Ext.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6DB13CBD26F84C2A0073F17B /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				6DB13C7E26F83DF70073F17B /* AppDelegate.swift */,
+				6DB13C8026F83DF70073F17B /* SceneDelegate.swift */,
+				6DB13C8926F83DFC0073F17B /* LaunchScreen.storyboard */,
+				6DB13CC126F851330073F17B /* Services */,
+				6DB13CBC26F84C0B0073F17B /* Utils */,
+			);
+			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		6DB13CBE26F850700073F17B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6DB13CBF26F850780073F17B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6DB13CB826F8465F0073F17B /* StartScreenVC.swift */,
+				6DB13CB426F844300073F17B /* RecipeFavoritesVC.swift */,
+				6DB13CAE26F840F20073F17B /* RecipeAppTabVC.swift */,
+				6DB13CB226F843140073F17B /* RecipeListingVC.swift */,
+				6DB13C8226F83DF70073F17B /* ViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6DB13CC026F8508E0073F17B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		6DB13CC126F851330073F17B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		B64FB47096ADD74A114E3540 /* Frameworks */ = {
