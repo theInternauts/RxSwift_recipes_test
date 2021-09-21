@@ -14,12 +14,13 @@ class RecipeDetailVC: UIViewController {
     private var label: UILabel = {
         let lbl = UILabel()
         lbl.numberOfLines = 0
+        lbl.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     private var favoriteBtn: UIButton = {
         // need better resizing instead of the extension
-        let size = CGSize(width: 50, height: 50)
+        let size = CGSize(width: 60, height: 50)
         let imgTrue = ImageSet.favoritesTRUE.resizedImage(size: size)!.withTintColor(Colors.pink)
         let imgFalse = ImageSet.favoritesFALSE.resizedImage(size: size)!.withTintColor(.white)
         
@@ -29,6 +30,16 @@ class RecipeDetailVC: UIViewController {
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.tintColor = Colors.pink
         return btn
+    }()
+    var imageUrl: String {
+        return viewModel.value.imageUrl
+    }
+    private var imageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        view.alpha = 0.5
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private let bag = DisposeBag()
@@ -44,11 +55,28 @@ class RecipeDetailVC: UIViewController {
         configureUI()
         bindData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setImageViewThumbnail(self.imageUrl)
+    }
 }
 
 
 // MARK - PRIVATE: RecipeDetailVC
 private extension RecipeDetailVC {
+    func setImageViewThumbnail(_ url: String) -> Void {
+        ImageLoader.shared().loadImage(url: url, then: {
+            [weak self] data in
+            guard self != nil else { return }
+            
+            if let img = UIImage(data: data) {
+                self!.imageView.image = img
+            } else {
+                self!.imageView.image = ImageSet.placeholderImage
+            }
+        })
+    }
     func updateBtnImage(_ btn: UIButton, model: RecipeDetailViewModel) -> Void {
         if (model.isFavorite.value) {
             btn.isSelected = true
@@ -62,8 +90,15 @@ private extension RecipeDetailVC {
         navigationItem.backButtonDisplayMode = .minimal
         title = "Detail"
         view.backgroundColor = Colors.gold
-        view.addSubviews(label, favoriteBtn)
+        view.addSubviews(imageView, label, favoriteBtn)
         
+        // auto-layout: imageView
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        ])
         
         // auto-layout: label
         NSLayoutConstraint.activate([

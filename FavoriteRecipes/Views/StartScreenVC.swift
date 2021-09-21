@@ -16,6 +16,7 @@ class StartScreenVC: UIViewController {
         btn.setTitle(ApplicationText.start.rawValue, for: .normal)
         btn.setTitleColor(.black, for: .normal)
         btn.backgroundColor = .white
+        btn.layer.cornerRadius = 6
         btn.addTarget(self, action: #selector(navigateToNewView), for: .touchUpInside)
         btn.translatesAutoresizingMaskIntoConstraints = false
         
@@ -57,7 +58,7 @@ private extension StartScreenVC {
     func configureUI() -> Void {
         configureNavigation(isHidden: true, textColor: Colors.gray)
         navigationItem.backButtonDisplayMode = .minimal
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = Colors.gold
         view.addSubview(button)
         title = ApplicationText.start.rawValue
     }
