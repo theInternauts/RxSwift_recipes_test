@@ -32,6 +32,7 @@
 		6DB13CD726F920130073F17B /* PersistenceManagerLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CD626F920130073F17B /* PersistenceManagerLight.swift */; };
 		6DB13CD926F9232B0073F17B /* PersistableRecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CD826F9232B0073F17B /* PersistableRecipeModel.swift */; };
 		6DB13CDB26F9462D0073F17B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CDA26F9462D0073F17B /* ImageLoader.swift */; };
+		6DB13CE326FA35F40073F17B /* RecipeFavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB13CE226FA35F40073F17B /* RecipeFavoritesViewModel.swift */; };
 		73DC8D0089F91295658A2D82 /* Pods_FavoriteRecipes_FavoriteRecipesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 002E23A003A51A20B3A13396 /* Pods_FavoriteRecipes_FavoriteRecipesUITests.framework */; };
 		7D7D566502AD1B30448FC109 /* Pods_FavoriteRecipesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2570713E89F935CAE446D50 /* Pods_FavoriteRecipesTests.framework */; };
 		ECFA9F97F5136B98AB242D00 /* Pods_FavoriteRecipes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF6962ABF9D28AE7852D2579 /* Pods_FavoriteRecipes.framework */; };
@@ -90,6 +91,7 @@
 		6DB13CD626F920130073F17B /* PersistenceManagerLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManagerLight.swift; sourceTree = "<group>"; };
 		6DB13CD826F9232B0073F17B /* PersistableRecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableRecipeModel.swift; sourceTree = "<group>"; };
 		6DB13CDA26F9462D0073F17B /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		6DB13CE226FA35F40073F17B /* RecipeFavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFavoritesViewModel.swift; sourceTree = "<group>"; };
 		7060B5A48FE26E9AAE2AB0EE /* Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig"; path = "Target Support Files/Pods-FavoriteRecipes-FavoriteRecipesUITests/Pods-FavoriteRecipes-FavoriteRecipesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		81A402423B405F7409351286 /* Pods-FavoriteRecipes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FavoriteRecipes.release.xcconfig"; path = "Target Support Files/Pods-FavoriteRecipes/Pods-FavoriteRecipes.release.xcconfig"; sourceTree = "<group>"; };
 		A2570713E89F935CAE446D50 /* Pods_FavoriteRecipesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FavoriteRecipesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				6DB13CCA26F8706A0073F17B /* RecipeListViewModel.swift */,
+				6DB13CE226FA35F40073F17B /* RecipeFavoritesViewModel.swift */,
 				6DB13CC826F86DF10073F17B /* RecipeDetailViewModel.swift */,
 			);
 			path = ViewModels;
@@ -522,6 +525,7 @@
 				6DB13CDB26F9462D0073F17B /* ImageLoader.swift in Sources */,
 				6DB13C8126F83DF70073F17B /* SceneDelegate.swift in Sources */,
 				6DB13CC726F859DF0073F17B /* Recipe.swift in Sources */,
+				6DB13CE326FA35F40073F17B /* RecipeFavoritesViewModel.swift in Sources */,
 				6DB13CD326F8E2290073F17B /* UIImage+Ext.swift in Sources */,
 				6DB13CC326F854CE0073F17B /* RxHTTPService.swift in Sources */,
 				6DB13CB726F845FB0073F17B /* Constants.swift in Sources */,

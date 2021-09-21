@@ -21,7 +21,7 @@ class RecipeListingVC: UIViewController {
     var recipeDetailVC: RecipeDetailVC?
     private let bag = DisposeBag()
     
-    private var collectionView: UICollectionView?
+    var collectionView: UICollectionView?
     
     
     // MARK: - Initialization
@@ -51,6 +51,38 @@ class RecipeListingVC: UIViewController {
         configureCollectionView()
         configureUI()
         bindData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        /*
+                THIS IS BAD.
+         
+                I know...
+         */
+        
+        collectionView?.reloadData()
+        
+        /*
+         PLEASE READ: I am adding this to ensure
+         the User will SEE the expected UI when favoriting
+         a recipe from any other controller.  I need to learn more about
+         RxSwift to ensure that the model is observed across all controllers.
+         
+         I am still have trouble with that. This is a hack
+         to deliver a WORKING app.  I needs much improvement; but deadlines
+         for buisness are real and SOMETIMES you have to ship a working prodcut
+         that is not PERFECT code.
+         
+         RxSwift -- I have many questions about the PROPER way to do this.
+         - Should I have put a single model on the UITabController as the
+         single source of truth for all data displays?
+         - Or maybe sync to CoreData and read from there on every update?
+         Was it a bad choice to serialize the entire recipe model and store
+         that in UserDefaults?
+         
+         
+         Let's talk about it.
+        */
     }
     
     override func viewDidLayoutSubviews() {
