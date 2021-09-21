@@ -31,7 +31,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     }()
     private var imageView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleAspectFit
         view.clipsToBounds = true
         view.layer.cornerRadius = 4
         view.layer.borderColor = .none
@@ -70,9 +70,6 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     // MARK: - Lifecycle
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        contentView.layer.borderColor = Colors.gray.cgColor
-        contentView.layer.borderWidth = 1
     }
     
     override func prepareForReuse() {

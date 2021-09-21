@@ -37,6 +37,7 @@ class RecipeDetailVC: UIViewController {
     private var imageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
         view.alpha = 0.5
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

@@ -23,7 +23,6 @@ class PersistenceManagerLight {
     
     // MARK: - Public
     func storeRecipeFavoritableObjectToUserDefault(_ model: PersistableRecipeModel, completion: (() -> Void)? = nil) {
-        print("========== SAVING ==========================================")
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: model, requiringSecureCoding: false)
             UserDefaults.standard.set(data, forKey: model.id)
@@ -41,7 +40,6 @@ class PersistenceManagerLight {
         do {
             if let data = UserDefaults.standard.value(forKey: id) {
                 model = try NSKeyedUnarchiver.unarchivedObject(ofClass: PersistableRecipeModel.self, from: data as! Data)
-                print("retrieved ==> \(String(describing: model?.id)): \(String(describing: model?.title)): \(String(describing: model?.isFavorite))")
             }
         } catch(let error) {
             model = nil
@@ -51,7 +49,6 @@ class PersistenceManagerLight {
     }
     
     func deleteRecipeObjectFromUserDefault(_ id: String, completion: (() -> Void)? = nil) {
-        print("````````````````````` DELETING ```````````````````````")
         UserDefaults.standard.removeObject(forKey: id)
         guard completion != nil else {
             return

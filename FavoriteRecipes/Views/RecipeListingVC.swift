@@ -129,7 +129,8 @@ private extension RecipeListingVC {
         
         let calcVal = view.frame.size.width - layout.minimumInteritemSpacing - layout.sectionInset.left - layout.sectionInset.right
         let cellWidthHeightConstant: CGFloat = calcVal / 2
-        layout.itemSize = CGSize(width: cellWidthHeightConstant, height: cellWidthHeightConstant)
+        // another hack :(
+        layout.itemSize = CGSize(width: cellWidthHeightConstant, height: cellWidthHeightConstant + 40)
         
         return layout
     }
