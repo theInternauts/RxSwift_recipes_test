@@ -60,7 +60,7 @@ class RecipeListingVC: UIViewController {
                 I know...
          */
         
-        collectionView?.reloadData()
+        viewModel.fetchRecipeViewModels()
         
         /*
          PLEASE READ: I am adding this to ensure
