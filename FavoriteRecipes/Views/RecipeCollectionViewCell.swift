@@ -29,7 +29,6 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     }()
     private var imageView: UIImageView = {
         let view = UIImageView()
-        view.image = ImageSet.placeholderImage
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 4
@@ -70,6 +69,15 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderWidth = 1
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+//        self.bag = DisposeBag()
+        isHidden = false
+        isSelected = false
+        isHighlighted = false
+        imageView.image = nil
+    }
+    
     
     // MARK: - Public
     func configure(_ viewModel: RecipeDetailViewModel) -> Void {
@@ -77,8 +85,8 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         self.label.addCharacterTracking(2)
         self.viewModel = viewModel
         
+        self.setImageViewThumbnail(viewModel.imageUrl)
         self.updateBtnImage(favoriteBtn, model: viewModel)
-        self.updateBgdImage(imageView, model: viewModel)
     }
 }
 
@@ -97,16 +105,17 @@ private extension RecipeCollectionViewCell {
         }
     }
     
-    func updateBgdImage(_ imageView: UIImageView,
-                        model: RecipeDetailViewModel) -> Void {
-        
-        if (model.isFavorite.value) {
-            imageView.image = UIImage(systemName: "bookmark.fill")?
-                .withTintColor(Colors.pink, renderingMode: .alwaysOriginal)
-        } else {
-            imageView.image = UIImage(systemName: "bookmark.slash")?
-                .withTintColor(Colors.gold, renderingMode: .alwaysOriginal)
-        }
+    func setImageViewThumbnail(_ url: String) -> Void {
+        ImageLoader.shared().loadImage(url: url, then: {
+            [weak self] data in
+            guard self != nil else { return }
+            
+            if let img = UIImage(data: data) {
+                self!.imageView.image = img
+            } else {
+                self!.imageView.image = ImageSet.placeholderImage
+            }
+        })
     }
     
     func configureUI() {
