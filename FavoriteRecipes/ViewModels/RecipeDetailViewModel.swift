@@ -11,6 +11,11 @@ import RxCocoa
 
 
 struct RecipeDetailViewModel {
+    // TODO: - refactor the entire model and expose recipe as
+    // an observerable on the public interface
+    
+    // THIS FILE MAKES ME SAD!
+    
     var recipe: Recipe!
     
     var id: String { return recipe.id }

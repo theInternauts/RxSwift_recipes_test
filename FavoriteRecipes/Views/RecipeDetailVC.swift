@@ -10,12 +10,6 @@ import RxSwift
 import RxCocoa
 
 
-enum Mocks {
-    static let recipe = Recipe(id: "baaec62c-2603-4269-ac0f-0e9ee7273401",
-                               type: "video",
-                               attributes: Attributes(title: "白菜とリンゴの簡単しゃきしゃき和え物",
-                                                      thumbnailSquareUrl: "https://video.kurashiru.com/production/videos/baaec62c-2603-4269-ac0f-0e9ee7273401/compressed_thumbnail_square_normal.png?1495695707"))
-}
 class RecipeDetailVC: UIViewController {
     private var label: UILabel = {
         let lbl = UILabel()
@@ -38,7 +32,7 @@ class RecipeDetailVC: UIViewController {
     }()
 
     private let bag = DisposeBag()
-    var viewModel = BehaviorRelay<RecipeDetailViewModel>(value: RecipeDetailViewModel(recipe: Mocks.recipe))
+    var viewModel = BehaviorRelay<RecipeDetailViewModel>(value: RecipeDetailViewModel(recipe: Stubs.recipe))
     var viewModelObservable: Observable<RecipeDetailViewModel> {
         return viewModel.asObservable()
     }
@@ -100,8 +94,6 @@ private extension RecipeDetailVC {
         favoriteBtn.rx.tap.bind {
             let isFavoriteSubject = self.viewModel.value.isFavorite
             isFavoriteSubject.accept(!isFavoriteSubject.value)
-            print("Detail-BTN Toast")
-            self.showToast5(message: ">>>> Detail-BTN toast", seconds: 1)
         }.disposed(by: bag)
     }
     

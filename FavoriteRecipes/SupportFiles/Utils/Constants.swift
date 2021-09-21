@@ -91,3 +91,11 @@ enum Colors {
 // UIColor(red: 98/255, green: 95/255, blue: 90/255, alpha: 1)
 
 
+
+// this bring me great shame.  If I had more time I would refactor the DetailViewModel remove the need for this
+enum Stubs {
+    static let recipe = Recipe(id: "baaec62c-2603-4269-ac0f-0e9ee7273401",
+                               type: "video",
+                               attributes: Attributes(title: "白菜とリンゴの簡単しゃきしゃき和え物",
+                                                      thumbnailSquareUrl: "https://video.kurashiru.com/production/videos/baaec62c-2603-4269-ac0f-0e9ee7273401/compressed_thumbnail_square_normal.png?1495695707"))
+}

@@ -50,7 +50,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     }()
     
     var bag = DisposeBag()
-    var viewModel = BehaviorRelay<RecipeDetailViewModel>(value: RecipeDetailViewModel(recipe: Mocks.recipe))
+    var viewModel = BehaviorRelay<RecipeDetailViewModel>(value: RecipeDetailViewModel(recipe: Stubs.recipe))
     var viewModelObservable: Observable<RecipeDetailViewModel> {
         return viewModel.asObservable()
     }
