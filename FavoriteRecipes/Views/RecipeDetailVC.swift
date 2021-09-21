@@ -57,10 +57,8 @@ class RecipeDetailVC: UIViewController {
 private extension RecipeDetailVC {
     func updateBtnImage(_ btn: UIButton, model: RecipeDetailViewModel) -> Void {
         if (model.isFavorite.value) {
-            print("TRUE ==> FILL: \(String(describing: model.isFavorite.value))")
             btn.isSelected = true
         } else {
-            print("FALSE ==> EMPTY: \(String(describing: model.isFavorite.value))")
             btn.isSelected = false
         }
     }
@@ -89,20 +87,21 @@ private extension RecipeDetailVC {
     }
     
     func bindData() -> Void {
-        // bind to visible UI
+        // subscribe to local model updates
         viewModelObservable.subscribe(onNext: { viewModel in
             self.label.text = viewModel.title
             self.updateBtnImage(self.favoriteBtn, model: viewModel)
             viewModel.isFavoriteObservable.subscribe({ event in
-                print("BTN EVENT: \(String(describing: event.element)):  synced?: \(viewModel.isFavorite.value == event.element)")
                 self.updateBtnImage(self.favoriteBtn, model: viewModel)
             }).disposed(by: self.bag)
         }).disposed(by: bag)
         
-        // bind to the favoriteBtn interaction events
+        // bind to the favoriteBtn interaction events and emit to local model
         favoriteBtn.rx.tap.bind {
             let isFavoriteSubject = self.viewModel.value.isFavorite
             isFavoriteSubject.accept(!isFavoriteSubject.value)
+            print("Detail-BTN Toast")
+            self.showToast5(message: ">>>> Detail-BTN toast", seconds: 1)
         }.disposed(by: bag)
     }
     

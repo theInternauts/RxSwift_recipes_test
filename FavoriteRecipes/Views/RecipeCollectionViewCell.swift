@@ -6,15 +6,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 
 class RecipeCollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier: String = String(describing: self)
     
     var imageUrl: String {
-        return viewModel?.imageUrl ?? ""
+        return viewModel.value.imageUrl
     }
-    private var favoriteBtn: UIButton = {
+    var favoriteBtn: UIButton = {
         // need better resizing instead of the extension
         let size = CGSize(width: 30, height: 25)
         let imgTrue = ImageSet.favoritesTRUE.resizedImage(size: size)!.withTintColor(Colors.pink)
@@ -47,7 +49,11 @@ class RecipeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private var viewModel: RecipeDetailViewModel?
+    var bag = DisposeBag()
+    var viewModel = BehaviorRelay<RecipeDetailViewModel>(value: RecipeDetailViewModel(recipe: Mocks.recipe))
+    var viewModelObservable: Observable<RecipeDetailViewModel> {
+        return viewModel.asObservable()
+    }
     
     
     // MARK: - Initialization
@@ -71,7 +77,7 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        self.bag = DisposeBag()
+        self.bag = DisposeBag()
         isHidden = false
         isSelected = false
         isHighlighted = false
@@ -83,26 +89,44 @@ class RecipeCollectionViewCell: UICollectionViewCell {
     func configure(_ viewModel: RecipeDetailViewModel) -> Void {
         self.label.text = viewModel.title
         self.label.addCharacterTracking(2)
-        self.viewModel = viewModel
+        self.viewModel.accept(viewModel)
+        self.bindData()
         
         self.setImageViewThumbnail(viewModel.imageUrl)
         self.updateBtnImage(favoriteBtn, model: viewModel)
+    }
+    
+    func updateBtnImage(_ btn: UIButton,
+                        model: RecipeDetailViewModel) -> Void {
+        
+        if (model.isFavorite.value) {
+            btn.isSelected = true
+        } else {
+            btn.isSelected = false
+        }
     }
 }
 
 
 // MARK: - UI Setup
 private extension RecipeCollectionViewCell {
-    func updateBtnImage(_ btn: UIButton,
-                        model: RecipeDetailViewModel) -> Void {
+    func bindData() -> Void {
+        // bind to visible UI
+        viewModelObservable.subscribe(onNext: { viewModel in
+            self.label.text = viewModel.title
+            self.label.addCharacterTracking(2)
+            self.setImageViewThumbnail(viewModel.imageUrl)
+            self.updateBtnImage(self.favoriteBtn, model: viewModel)
+            viewModel.isFavoriteObservable.subscribe({ event in
+                self.updateBtnImage(self.favoriteBtn, model: viewModel)
+            }).disposed(by: self.bag)
+        }).disposed(by: bag)
         
-        if (model.isFavorite.value) {
-            print("TRUE ==> FILL: \(String(describing: model.isFavorite.value))")
-            btn.isSelected = true
-        } else {
-            print("FALSE ==> EMPTY: \(String(describing: model.isFavorite.value))")
-            btn.isSelected = false
-        }
+        // bind to the favoriteBtn interaction events
+        favoriteBtn.rx.tap.bind {
+            let isFavoriteSubject = self.viewModel.value.isFavorite
+            isFavoriteSubject.accept(!isFavoriteSubject.value)
+        }.disposed(by: bag)
     }
     
     func setImageViewThumbnail(_ url: String) -> Void {

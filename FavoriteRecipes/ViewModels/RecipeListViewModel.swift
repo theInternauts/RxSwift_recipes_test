@@ -34,7 +34,7 @@ class RecipeListViewModel {
             var recipeDetailViewModels = [RecipeDetailViewModel]()
             for index in 0..<value.count {
                 let detail = RecipeDetailViewModel(recipe: value[index])
-                self.readFavoritesStatus(detail)
+                self.readFavoritesPersistenceStatus(detail)
                 recipeDetailViewModels.append(detail)
             }
             self.recipeDetail.accept(recipeDetailViewModels)
@@ -50,13 +50,13 @@ class RecipeListViewModel {
         }).disposed(by: bag)
     }
     
-    func readFavoritesStatus(_ model: RecipeDetailViewModel) -> Void {
+    func readFavoritesPersistenceStatus(_ model: RecipeDetailViewModel) -> Void {
         if let prm = PersistenceManagerLight.shared().getRecipeObjectFromUserDefault(model.id) {
             model.isFavorite.accept(Bool(prm.isFavorite) ?? false)
         }
     }
     
-    func updateFavoritesStatus(_ model: RecipeDetailViewModel, completion: (()-> Void)? = nil) -> Void {
+    func updateFavoritesPersistenceStatus(_ model: RecipeDetailViewModel, completion: (()-> Void)? = nil) -> Void {
         if model.isFavorite.value {
             PersistenceManagerLight.shared().storeRecipeFavoritableObjectToUserDefault(PersistableRecipeModel(model))
         } else {

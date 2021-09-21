@@ -107,6 +107,7 @@ private extension RecipeListingVC {
             fatalError("self.viewModel: RecipeListViewModel cannot be bound to becasue self.collectionView: UICollectionView? is not present")
         }
         
+        // populate local view display
         viewModel.recipeDetailObserver
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (value) in
@@ -118,14 +119,25 @@ private extension RecipeListingVC {
             self.errorAlert()
         }).disposed(by: bag)
         
+
+        // bind to reusable cells
         filteredDataList
             .bind(to: collectionView.rx
                     .items(cellIdentifier: RecipeCollectionViewCell.reuseIdentifier,
                            cellType: RecipeCollectionViewCell.self))
             { row, model, cell in
                 cell.configure(model)
+                cell.viewModel.value.isFavoriteObservable
+                    .observe(on: MainScheduler.instance)
+                    .distinctUntilChanged()
+                    .subscribe(onNext: { [weak self] _ in
+                        guard let self = self else { return }
+                        
+                        self.viewModel.updateFavoritesPersistenceStatus(model)
+                    }).disposed(by: cell.bag)
             }.disposed(by: bag)
         
+        // subcribe to selected item in local display
         collectionView.rx.itemSelected
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] (indexPath) in
@@ -139,10 +151,7 @@ private extension RecipeListingVC {
                     .subscribe(onNext: { [weak self] _ in
                         guard let self = self else { return }
                         
-                        self.viewModel.updateFavoritesStatus(model) {
-                            print("DONZO")
-                        }
-                        self.collectionView?.reloadData()
+                        self.viewModel.updateFavoritesPersistenceStatus(model)
                     }).disposed(by: self.bag)
                 
                 self.navigationController?.pushViewController(self.recipeDetailVC ?? RecipeDetailVC(), animated: true)
